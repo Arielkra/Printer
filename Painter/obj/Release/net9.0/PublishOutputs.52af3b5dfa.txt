@@ -1,0 +1,7 @@
+D:\Users\Ariel&Neta\Desktop\Painter\Painter\Painter\obj\Release\net9.0\PubTmp\Out\Painter.exe
+D:\Users\Ariel&Neta\Desktop\Painter\Painter\Painter\obj\Release\net9.0\PubTmp\Out\appsettings.Development.json
+D:\Users\Ariel&Neta\Desktop\Painter\Painter\Painter\obj\Release\net9.0\PubTmp\Out\appsettings.json
+D:\Users\Ariel&Neta\Desktop\Painter\Painter\Painter\obj\Release\net9.0\PubTmp\Out\Painter.dll
+D:\Users\Ariel&Neta\Desktop\Painter\Painter\Painter\obj\Release\net9.0\PubTmp\Out\Painter.deps.json
+D:\Users\Ariel&Neta\Desktop\Painter\Painter\Painter\obj\Release\net9.0\PubTmp\Out\Painter.runtimeconfig.json
+D:\Users\Ariel&Neta\Desktop\Painter\Painter\Painter\obj\Release\net9.0\PubTmp\Out\Painter.pdb

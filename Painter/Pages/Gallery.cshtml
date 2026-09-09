@@ -1,0 +1,43 @@
+@page "/works/{slug?}"
+@model GalleryModel
+@{
+    ViewData["Title"] = Model.Detail?.Title ?? "עבודות";
+}
+
+@if (Model.Detail is { } d)
+{
+    <article class="detail">
+        <div class="canvas large" style="--a:@d.ColorA; --b:@d.ColorB; --c:@d.ColorC; aspect-ratio:@d.Ratio"></div>
+        <div class="detail-text">
+            <h1>@d.Title</h1>
+            <dl>
+                <dt>שנה</dt><dd>@d.Year</dd>
+                <dt>טכניקה</dt><dd>@d.Medium</dd>
+                <dt>מידות</dt><dd>@d.Size</dd>
+                <dt>סדרה</dt><dd>@d.Series</dd>
+            </dl>
+            <p>@d.Description</p>
+            <a class="button" asp-page="/Contact" asp-route-work="@d.Title">לשאול על העבודה</a>
+            <a class="back" asp-page="/Gallery">חזרה לכל העבודות</a>
+        </div>
+    </article>
+}
+else
+{
+    <section class="gallery">
+        <h1>עבודות</h1>
+        <nav class="series-filter" aria-label="סינון לפי סדרה">
+            <a asp-page="/Gallery" class="@(Model.Series is null ? "active" : "")">הכול</a>
+            @foreach (var s in Model.AllSeries)
+            {
+                <a asp-page="/Gallery" asp-route-series="@s" class="@(Model.Series == s ? "active" : "")">@s</a>
+            }
+        </nav>
+        <div class="grid">
+            @foreach (var work in Model.Works)
+            {
+                <partial name="_Canvas" model="work" />
+            }
+        </div>
+    </section>
+}

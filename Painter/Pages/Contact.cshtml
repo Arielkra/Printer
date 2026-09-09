@@ -1,0 +1,40 @@
+@page
+@model ContactModel
+@{
+    ViewData["Title"] = "יצירת קשר";
+}
+
+<section class="contact">
+    <div class="contact-intro">
+        <h1>יצירת קשר</h1>
+        <p>לשאלות על עבודות, הזמנות דיוקן או ביקור בסטודיו. מתאו עונה בעצמו, בדרך כלל תוך יומיים.</p>
+        <address>
+            ויה דיי סרליי 12, פירנצה<br />
+            <a href="mailto:studio@rinaldi.example">studio@rinaldi.example</a>
+        </address>
+    </div>
+
+    @if (Model.Sent)
+    {
+        <p class="sent" role="status">ההודעה נשלחה. נחזור אליך בקרוב.</p>
+    }
+    else
+    {
+        <form method="post">
+            <div asp-validation-summary="ModelOnly"></div>
+            <label asp-for="Form.Name">שם</label>
+            <input asp-for="Form.Name" />
+            <span asp-validation-for="Form.Name"></span>
+
+            <label asp-for="Form.Email">מייל</label>
+            <input asp-for="Form.Email" type="email" dir="ltr" />
+            <span asp-validation-for="Form.Email"></span>
+
+            <label asp-for="Form.Message">הודעה</label>
+            <textarea asp-for="Form.Message" rows="6"></textarea>
+            <span asp-validation-for="Form.Message"></span>
+
+            <button type="submit" class="button">שליחת הודעה</button>
+        </form>
+    }
+</section>

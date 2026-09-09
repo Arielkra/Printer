@@ -1,0 +1,243 @@
+/* ---------- טוקנים ---------- */
+:root {
+    --wall: #D9D7C6;        /* קיר סיד, גוון ורדאצ'ו */
+    --wall-deep: #C7C4B0;
+    --paper: #F2F0E8;       /* לבן עופרת */
+    --ink: #1C1F1A;
+    --lapis: #1F3A93;
+    --lapis-deep: #0F1E4F;
+    --muted: #5E6158;
+
+    --display: "Frank Ruhl Libre", "Times New Roman", serif;
+    --body: "Heebo", "Arial Hebrew", sans-serif;
+
+    --measure: 34rem;
+    --gutter: clamp(1.25rem, 4vw, 4rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+body {
+    margin: 0;
+    background: var(--wall);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+}
+
+h1, h2, h3 {
+    font-family: var(--display);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0 0 .75em;
+    letter-spacing: -0.005em;
+}
+h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+
+p { margin: 0 0 1.1em; max-width: var(--measure); }
+
+a { color: var(--lapis); text-decoration-thickness: 1px; text-underline-offset: .18em; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--lapis);
+    outline-offset: 3px;
+}
+
+main { padding: 0 var(--gutter); }
+
+/* ---------- כותרת עליונה ---------- */
+.masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    padding: 1.5rem var(--gutter);
+    border-bottom: 1px solid var(--wall-deep);
+}
+.brand {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1;
+}
+.brand small {
+    display: block;
+    font-family: var(--body);
+    font-size: .8rem;
+    color: var(--muted);
+    margin-top: .35rem;
+}
+.masthead nav { display: flex; gap: 1.75rem; }
+.masthead nav a { color: var(--ink); text-decoration: none; padding-bottom: .2rem; border-bottom: 1px solid transparent; }
+.masthead nav a:hover { border-bottom-color: var(--ink); }
+
+/* ---------- בד מתוח ---------- */
+/* כל ציור הוא "בד" עם צבע, מרקם וצל של מסגרת מתוחה על הקיר */
+.canvas {
+    width: 100%;
+    background:
+        radial-gradient(120% 80% at 30% 20%, var(--c) 0%, transparent 55%),
+        linear-gradient(165deg, var(--b) 0%, var(--a) 70%);
+    position: relative;
+    box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,.08),
+        0 1px 0 rgba(255,255,255,.35),
+        6px 10px 0 -2px var(--wall-deep),
+        8px 14px 24px rgba(28,31,26,.25);
+}
+.canvas::after {
+    /* גרעין הפשתן */
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 3px),
+        repeating-linear-gradient(90deg, rgba(0,0,0,.06) 0 1px, transparent 1px 3px);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+.canvas-link { display: block; color: inherit; text-decoration: none; }
+.canvas-link .caption { display: flex; flex-direction: column; margin-top: 1rem; }
+.canvas-link .title { font-family: var(--display); font-size: 1.25rem; }
+.canvas-link .meta { color: var(--muted); font-size: .9rem; }
+.canvas-link:hover .title { text-decoration: underline; text-underline-offset: .2em; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: 3.5rem var(--gutter);
+    align-items: end;
+}
+
+/* ---------- דף הבית ---------- */
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--gutter);
+    align-items: center;
+    min-height: calc(100vh - 6rem);
+    padding: 3rem 0;
+}
+.hero-canvas {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    background:
+        radial-gradient(120% 80% at 30% 20%, var(--c) 0%, transparent 55%),
+        linear-gradient(165deg, var(--b) 0%, var(--a) 70%);
+    box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,.08),
+        10px 16px 0 -3px var(--wall-deep),
+        14px 22px 40px rgba(28,31,26,.3);
+    animation: settle 900ms cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes settle {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: none; }
+}
+.hero-text h1 { max-width: 12ch; }
+.hero-caption { color: var(--muted); font-size: .9rem; }
+
+.selected { padding: 4rem 0; border-top: 1px solid var(--wall-deep); }
+
+.note { padding: 5rem 0 6rem; }
+.note blockquote { margin: 0; max-width: 40rem; margin-inline: auto; text-align: center; }
+.note blockquote p {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.35;
+    max-width: none;
+    color: var(--lapis-deep);
+}
+.note cite { font-style: normal; color: var(--muted); font-size: .9rem; }
+
+/* ---------- כפתורים ---------- */
+.button {
+    display: inline-block;
+    background: var(--lapis);
+    color: var(--paper);
+    padding: .8rem 1.6rem;
+    text-decoration: none;
+    border: 0;
+    font: inherit;
+    font-weight: 400;
+    cursor: pointer;
+    margin-top: .5rem;
+}
+.button:hover { background: var(--lapis-deep); }
+
+/* ---------- גלריה ---------- */
+.gallery { padding: 3rem 0 6rem; }
+.series-filter { display: flex; gap: 1.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
+.series-filter a { color: var(--muted); text-decoration: none; }
+.series-filter a.active { color: var(--ink); border-bottom: 1px solid var(--ink); }
+.series-filter a:hover { color: var(--ink); }
+
+.detail {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    gap: var(--gutter);
+    padding: 3rem 0 6rem;
+    align-items: start;
+}
+.canvas.large { max-height: 80vh; margin-inline: auto; }
+.detail dl { display: grid; grid-template-columns: max-content 1fr; gap: .25rem 1.5rem; margin: 0 0 1.5rem; }
+.detail dt { color: var(--muted); }
+.detail dd { margin: 0; }
+.detail .back { display: block; margin-top: 1.5rem; color: var(--muted); }
+
+/* ---------- על הצייר ---------- */
+.about { padding: 3rem 0 6rem; }
+.about-columns { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--gutter); }
+.timeline h2 { font-size: 1.25rem; }
+.timeline ol { list-style: none; padding: 0; margin: 0; }
+.timeline li { padding: .6rem 0; border-top: 1px solid var(--wall-deep); }
+.timeline li span { display: inline-block; min-width: 3.5rem; color: var(--muted); }
+
+/* ---------- יצירת קשר ---------- */
+.contact { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--gutter); padding: 3rem 0 6rem; }
+address { font-style: normal; color: var(--muted); }
+form { display: flex; flex-direction: column; max-width: 32rem; }
+label { margin-top: 1.25rem; margin-bottom: .35rem; }
+input, textarea {
+    font: inherit;
+    padding: .7rem .9rem;
+    border: 1px solid var(--wall-deep);
+    background: var(--paper);
+    color: var(--ink);
+}
+input:focus, textarea:focus { border-color: var(--lapis); }
+.field-validation-error { color: #8A2E2E; font-size: .9rem; margin-top: .3rem; }
+.validation-summary-errors ul { margin: 0 0 1rem; padding-inline-start: 1.2rem; color: #8A2E2E; }
+form .button { align-self: flex-start; margin-top: 1.75rem; }
+.sent { background: var(--paper); padding: 1.5rem; border-inline-start: 3px solid var(--lapis); }
+
+/* ---------- תחתית ---------- */
+.colophon {
+    padding: 2rem var(--gutter);
+    border-top: 1px solid var(--wall-deep);
+    color: var(--muted);
+    font-size: .9rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.colophon p { margin: 0; }
+
+/* ---------- מובייל ---------- */
+@media (max-width: 760px) {
+    .masthead { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .hero, .detail, .about-columns, .contact { grid-template-columns: 1fr; }
+    .hero { min-height: auto; padding-top: 2rem; }
+    .hero-canvas { order: -1; }
+    .grid { gap: 2.5rem; }
+}

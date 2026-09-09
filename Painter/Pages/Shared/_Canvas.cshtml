@@ -1,0 +1,8 @@
+@model Artwork
+<a class="canvas-link" asp-page="/Gallery" asp-route-slug="@Model.Slug" aria-label="@Model.Title">
+    <div class="canvas" style="--a:@Model.ColorA; --b:@Model.ColorB; --c:@Model.ColorC; aspect-ratio:@Model.Ratio"></div>
+    <div class="caption">
+        <span class="title">@Model.Title</span>
+        <span class="meta">@Model.Year, @Model.Medium, @Model.Size</span>
+    </div>
+</a>
