@@ -1,2 +1,4 @@
 *.cshtml linguist-language=HTML
 *.cshtml linguist-language=HTML
+*.css linguist-vendored=true
+*.cshtml linguist-language=HTML
